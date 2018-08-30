@@ -13,12 +13,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 3、代码
 		MvcResult result = mockMvc.perform(post("/loginmain/rest/web/login/doLogin.init") // 这个地址填写你抓到的地址，不要http://localhost:8000
-                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(map)))
+                .param("tenantId", "")
+                .param("username", "")
+                .param("password", "")
+                .param("validCode", ""))
                 .andExpect(status().isOk())// 模拟发送get请求
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))// 预期返回值的媒体类型text/plain;charset=UTF-8
                 .andReturn();// 返回执行请求的结果
-
-        System.out.println(result.getResponse().getContentAsString());
 		
 4、import引入
 import net.minidev.json.JSONObject;
